@@ -1,0 +1,30 @@
+package com.ratna.spring.mongodb.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.ratna.spring.mongodb.model.Book;
+import com.ratna.spring.mongodb.repository.BookRepository;
+
+@Service
+public class BookService {
+
+	@Autowired
+	BookRepository bookRepository;
+
+	public String saveBook(@RequestBody Book book) {
+
+		Book save = bookRepository.save(book);
+
+		return "Saved the book" + save.getBookName() + " into Collection";
+
+	}
+
+	public List<Book> retrieveBooks() {
+		return bookRepository.findAll();
+	}
+
+}

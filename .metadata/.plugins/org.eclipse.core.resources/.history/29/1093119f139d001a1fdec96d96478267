@@ -1,0 +1,64 @@
+package com.ratna.spring.mongodb.service;
+
+
+import static org.hamcrest.CoreMatchers.startsWith;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.ratna.spring.mongodb.model.Book;
+import com.ratna.spring.mongodb.repository.BookRepository;
+
+@Service
+public class BookService {
+
+	@Autowired
+	BookRepository bookRepository;
+
+	public String saveBook(@RequestBody Book book) {
+
+		Book save = bookRepository.save(book);
+
+		return "Saved the book" + save.getBookName() + " into Collection";
+
+	}
+
+	public List<Book> retrieveBooks() {
+		return bookRepository.findAll();
+	}
+
+	public Optional<Book> getSelectedBook(Integer id) {
+		return bookRepository.findById(id);
+	}
+
+	public String deleteSelectedBook(Integer id) {
+		try {
+			bookRepository.deleteById(id);
+			return "deleted";
+		} catch (Exception e) {
+			return e.getMessage();
+		}
+	}
+
+	public List<Book> sortBooks(String bookName, Integer size) {
+		PageRequest req = PageRequest.of(0, size, Sort.by(bookName));
+		return bookRepository.findAll(req).toList();
+	}
+
+	public List<Book> getBookByExample(Integer id,String field) {
+		Book book = new Book();
+		book.setId(id);
+		Example<Book> of = Example.of(book);
+		ExampleMatcher.matching().withMatcher(field, startsWith().ignoreCase());
+		return bookRepository.findAll(of);
+	}
+
+}

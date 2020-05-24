@@ -1,0 +1,28 @@
+package com.ratna.spring.mongodb.model;
+
+public class Address {
+
+	private String city;
+	private String state;
+	private Intger pinCode;
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
+	public Intger getPinCode() {
+		return pinCode;
+	}
+	public void setPinCode(Intger pinCode) {
+		this.pinCode = pinCode;
+	}
+	
+	
+}

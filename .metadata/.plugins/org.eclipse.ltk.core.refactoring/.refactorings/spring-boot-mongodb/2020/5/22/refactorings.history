@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;com.ratna.spring.mongodb.repository.UserRepository&apos; to &apos;OrderManagementRepository&apos;&#x0D;&#x0A;- Original project: &apos;spring-boot-mongodb&apos;&#x0D;&#x0A;- Original element: &apos;com.ratna.spring.mongodb.repository.UserRepository&apos;&#x0D;&#x0A;- Renamed element: &apos;com.ratna.spring.mongodb.repository.OrderManagementRepository&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;UserRepository&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/main\/java&lt;com.ratna.spring.mongodb.repository{UserRepository.java[UserRepository" matchStrategy="1" name="OrderManagementRepository" qualified="false" references="true" similarDeclarations="false" stamp="1590339199571" textual="false" version="1.0"/>
+</session>

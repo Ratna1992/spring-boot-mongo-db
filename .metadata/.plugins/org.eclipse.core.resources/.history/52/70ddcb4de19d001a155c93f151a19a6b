@@ -1,0 +1,19 @@
+package com.ratna.spring.mongodb.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.ratna.spring.mongodb.model.User;
+import com.ratna.spring.mongodb.repository.OrderManagementRepository;
+
+@Service
+public class OrderManagementService {
+
+	@Autowired
+	OrderManagementRepository orderManagementRepository;
+
+	public User saveOrder(User user) {
+		return orderManagementRepository.save(user);
+	}
+
+}

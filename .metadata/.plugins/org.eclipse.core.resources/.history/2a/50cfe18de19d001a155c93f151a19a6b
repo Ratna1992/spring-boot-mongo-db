@@ -1,0 +1,21 @@
+package com.ratna.spring.mongodb.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.ratna.spring.mongodb.model.User;
+import com.ratna.spring.mongodb.service.OrderManagementService;
+
+@RestController
+public class OrderManagementController {
+	@Autowired
+	OrderManagementService orderManagementService;
+
+	@PostMapping("/placeorder")
+	public User saveOrder(@RequestBody User user) {
+		return orderManagementService.saveOrder(user);
+	}
+
+}

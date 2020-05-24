@@ -1,0 +1,5 @@
+package com.ratna.spring.mongodb.model;
+
+public class Book {
+
+}

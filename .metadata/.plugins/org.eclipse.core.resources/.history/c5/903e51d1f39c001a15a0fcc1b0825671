@@ -1,0 +1,6 @@
+package com.ratna.spring.mongodb.service;
+
+@Service
+public class BookService {
+
+}

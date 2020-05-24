@@ -1,0 +1,5 @@
+package com.ratna.spring.mongodb.service;
+
+public class OrderManagementService {
+
+}
