@@ -1,10 +1,7 @@
 package com.ratna.spring.mongodb.model;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.PersistenceConstructor;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "accountHolder")
 public class AccountHolder {
 
 	@Id
@@ -21,17 +18,7 @@ public class AccountHolder {
 	public AccountHolder() {
 	}
 
-	@PersistenceConstructor
-	public AccountHolder(Integer id, String firstName, Long mobile, String dob, String lastName, String address) {
-		super();
-		this.id = id;
-		this.firstName = firstName;
-		this.mobile = mobile;
-		this.dob = dob;
-		this.lastName = lastName;
-		this.address = address;
-	}
-
+	
 	public void setId(Integer id) {
 		this.id = id;
 	}

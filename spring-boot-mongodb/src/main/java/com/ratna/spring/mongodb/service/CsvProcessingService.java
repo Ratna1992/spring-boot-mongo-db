@@ -51,6 +51,8 @@ public class CsvProcessingService {
 
 		List<AccountCSVFile> parse = csvToBean.parse();
 
+		List<AccountDetails> list = new ArrayList<>();
+
 		parse.forEach(obj -> {
 			int nextInt = new Random().nextInt(10000);
 			// Account Details
@@ -79,11 +81,11 @@ public class CsvProcessingService {
 			regionDetails.setPinCode(obj.getPinCode());
 			regionDetails.setState(obj.getState());
 			accountDetails.setRegionDetails(regionDetails);
-			template.save(accountHolder);
-			template.save(regionDetails);
-			template.save(accountDetails);
+			list.add(accountDetails);
 
 		});
+
+		template.insertAll(list);
 
 		return msg;
 	}

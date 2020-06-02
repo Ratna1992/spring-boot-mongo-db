@@ -1,0 +1,40 @@
+package com.ratna.spring.mongodb.service;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.ratna.spring.mongodb.exceptions.NoActorsDataException;
+import com.ratna.spring.mongodb.exceptions.NoFilmsDataException;
+import com.ratna.spring.mongodb.model.Actors;
+import com.ratna.spring.mongodb.model.Films;
+import com.ratna.spring.mongodb.repository.FilmsRepository;
+
+@Service
+public class FilmsService {
+
+	@Autowired
+	FilmsRepository filmsRepository;
+
+	public List<Films> getAllFilms() throws NoFilmsDataException {
+		return filmsRepository.findAll();
+	}
+
+	public List<Films> getFilmsByActor(String name) throws NoFilmsDataException {
+		return filmsRepository.findByActors(name);
+	}
+
+	public List<Films> getFilmsByCategory(String category) throws NoFilmsDataException {
+		return filmsRepository.findByCategory(category);
+	}
+
+	public List<Films> getFilmsByRating(String rating) throws NoFilmsDataException {
+		return filmsRepository.findByRating(rating);
+	}
+
+	public List<Actors> getAllActors() throws NoActorsDataException {
+		return filmsRepository.findAll().stream().flatMap(obj -> obj.getActors().stream()).collect(Collectors.toList());
+	}
+}

@@ -1,10 +1,7 @@
 package com.ratna.spring.mongodb.model;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.PersistenceConstructor;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "regiondetails")
 public class RegionDetails {
 	@Id
 	private Integer id;
@@ -14,16 +11,6 @@ public class RegionDetails {
 	private Long pinCode;
 
 	public RegionDetails() {
-	}
-
-	@PersistenceConstructor
-	public RegionDetails(Integer id, String state, String country, String area, Long pinCode) {
-		super();
-		this.id = id;
-		this.state = state;
-		this.country = country;
-		this.area = area;
-		this.pinCode = pinCode;
 	}
 
 	public String getState() {

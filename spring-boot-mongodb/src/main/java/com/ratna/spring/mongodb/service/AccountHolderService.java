@@ -14,8 +14,6 @@ import com.ratna.spring.mongodb.model.AccountDetails;
 import com.ratna.spring.mongodb.model.AccountHolder;
 import com.ratna.spring.mongodb.model.RegionDetails;
 import com.ratna.spring.mongodb.repository.AccountDetailsRepository;
-import com.ratna.spring.mongodb.repository.AccountHolderRepository;
-import com.ratna.spring.mongodb.repository.RegionalDetailsRepository;
 
 @Service
 public class AccountHolderService {
@@ -25,14 +23,8 @@ public class AccountHolderService {
 	@Autowired
 	AccountDetailsRepository accountDetailsRepository;
 
-	@Autowired
-	RegionalDetailsRepository regionalDetailsRepository;
-
-	@Autowired
-	AccountHolderRepository accountHolderRepository;
-
 	public List<AccountDetails> getAllAccounts() {
-		 return accountDetailsRepository.findAll();
+		return accountDetailsRepository.findAll();
 	}
 
 	public List<AccountHolder> getAccountHoldersToSpecificRegion(String region) {
@@ -41,7 +33,8 @@ public class AccountHolderService {
 	}
 
 	public List<RegionDetails> getRegions(String region) {
-		return regionalDetailsRepository.findByArea(region);
+		return accountDetailsRepository.findByRegionDetails(region).stream().map(AccountDetails::getRegionDetails)
+				.collect(Collectors.toList());
 
 	}
 

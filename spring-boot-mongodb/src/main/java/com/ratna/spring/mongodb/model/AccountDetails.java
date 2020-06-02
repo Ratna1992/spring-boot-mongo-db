@@ -1,8 +1,6 @@
 package com.ratna.spring.mongodb.model;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.PersistenceConstructor;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "account")
@@ -14,22 +12,7 @@ public class AccountDetails {
 	private String ifsc;
 	private Double transferLimit;
 
-	public AccountDetails() {
-	}
-
-	@PersistenceConstructor
-	public AccountDetails(Integer id, String accountNumber, String accountType, String ifsc, Double transferLimit) {
-		super();
-		this.id = id;
-		this.accountNumber = accountNumber;
-		this.accountType = accountType;
-		this.ifsc = ifsc;
-		this.transferLimit = transferLimit;
-	}
-
-	@DBRef(db="accountHolder")
 	private AccountHolder accountHolder;
-	@DBRef(db="regiondetails")
 	private RegionDetails regionDetails;
 
 	public Integer getId() {

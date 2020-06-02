@@ -1,0 +1,13 @@
+accountNumber,accountType,ifsc,transferLimit,firstName,mobile,dob,lastName,address,state,country,area,pinCode
+123456789,sal,hdfc12345,1000000,abc,123456789,12-02-1992,def,hyderabad telanagana madhapur dno 1-2-3,telangana,india,madhapur,500081
+123456719,personal,hdfc12346,1000000,def,123456789,12-02-1993,def,hyderabad telanagana madhapur dno 1-2-31,telangana,india,madhapur,500081
+123456729,joint,hdfc12347,1000000,ghi,123456789,12-02-1994,def,hyderabad telanagana madhapur dno 1-2-32,telangana,india,madhapur,500081
+123456739,sal,hdfc12348,1000000,jkl,123456789,12-02-1995,def,hyderabad telanagana madhapur dno 1-2-33,telangana,india,madhapur,500081
+123456749,sal,hdfc12349,1000000,mno,123456789,12-02-1996,def,hyderabad telanagana madhapur dno 1-2-34,telangana,india,madhapur,500081
+123456759,sal,hdfc12341,1000000,pqr,123456789,12-02-1997,def,hyderabad telanagana madhapur dno 1-2-35,telangana,india,madhapur,500081
+123456769,sal,hdfc12342,1000000,stu,123456789,12-02-1998,def,hyderabad telanagana madhapur dno 1-2-36,telangana,india,madhapur,500081
+123456779,sal,hdfc12343,1000000,vwx,123456789,12-02-1999,def,hyderabad telanagana madhapur dno 1-2-37,telangana,india,madhapur,500081
+123456788,sal,hdfc12344,1000000,yzk,123456789,12-02-1991,def,hyderabad telanagana madhapur dno 1-2-38,telangana,india,madhapur,500081
+123456787,sal,hdfc12355,1000000,ab,123456789,12-02-1990,def,hyderabad telanagana madhapur dno 1-2-39,telangana,india,madhapur,500081
+123456786,sal,hdfc12365,1000000,bc,123456789,12-02-1989,def,vijayawad andhrapradesh dno 1-21-3,andhrapradesh,india,vijayawada,521157
+123456785,sal,hdfc12375,1000000,ac,123456789,12-02-1988,def,vijayawad andhrapradesh dno 1-23-3,andhrapradesh,india,vijayawada,521157
