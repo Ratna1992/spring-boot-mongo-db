@@ -13,7 +13,7 @@ import com.ratna.spring.mongodb.model.Films;
 import com.ratna.spring.mongodb.repository.FilmsRepository;
 
 @Service
-public class FilmsService {
+public class FilmsService implements FilmsServiceInterface {
 
 	@Autowired
 	FilmsRepository filmsRepository;
@@ -23,7 +23,11 @@ public class FilmsService {
 	}
 
 	public List<Films> getFilmsByActor(String name) throws NoFilmsDataException {
-		return filmsRepository.findByActors(name);
+		List<Films> findByActors = filmsRepository.findByActors(name);
+		findByActors.forEach(obj -> {
+			obj.getActors().removeIf(actor -> !actor.getFirstName().equalsIgnoreCase(name));
+		});
+		return findByActors;
 	}
 
 	public List<Films> getFilmsByCategory(String category) throws NoFilmsDataException {

@@ -17,20 +17,21 @@ import org.springframework.stereotype.Service;
 
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
+import com.ratna.spring.mongodb.exceptions.DataLoadDataException;
 import com.ratna.spring.mongodb.model.AccountCSVFile;
 import com.ratna.spring.mongodb.model.AccountDetails;
 import com.ratna.spring.mongodb.model.AccountHolder;
 import com.ratna.spring.mongodb.model.RegionDetails;
 
 @Service
-public class CsvProcessingService {
+public class CsvProcessingService implements CsvProcessingServiceInterface {
 	@Autowired
 	ResourceLoader resourceLoader;
 
 	@Autowired
 	MongoTemplate template;
 
-	public String loadDataIntoDatabase() {
+	public String loadDataIntoDatabase() throws DataLoadDataException{
 		String msg = "Loaded Data Successfully...";
 
 		Resource resource = resourceLoader.getResource("classpath:accountdetails.csv");

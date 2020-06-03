@@ -57,7 +57,7 @@ public class FilmsController {
 	public List<Actors> getAllActors() {
 		try {
 			return filmsService.getAllActors();
-		} catch (NoFilmsDataException e) {
+		} catch (NoActorsDataException e) {
 			throw new NoActorsDataException("No Actors Available");
 		}
 	}

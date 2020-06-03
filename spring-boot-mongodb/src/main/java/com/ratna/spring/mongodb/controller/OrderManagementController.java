@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ratna.spring.mongodb.exceptions.NoUserOrderDataException;
 import com.ratna.spring.mongodb.model.User;
 import com.ratna.spring.mongodb.service.OrderManagementService;
 
@@ -18,12 +19,20 @@ public class OrderManagementController {
 
 	@PostMapping("/placeorder")
 	public User placeOrder(@RequestBody User user) {
-		return orderManagementService.placeOrder(user);
+		try {
+			return orderManagementService.placeOrder(user);
+		} catch (NoUserOrderDataException e) {
+			throw new NoUserOrderDataException("Unable tp place order for products ::" + user.getProducts());
+		}
 	}
 
 	@GetMapping("/fetchorder")
 	public List<User> fetchorder() {
-		return orderManagementService.fetchOrder();
+		try {
+			return orderManagementService.fetchOrder();
+		} catch (NoUserOrderDataException e) {
+			throw new NoUserOrderDataException("No user data available");
+		}
 	}
 
 }
