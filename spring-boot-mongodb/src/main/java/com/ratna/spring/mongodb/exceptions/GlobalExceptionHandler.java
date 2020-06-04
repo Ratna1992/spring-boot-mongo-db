@@ -69,6 +69,11 @@ public class GlobalExceptionHandler {
 	public ResponseEntity<ErrorResponse> handleNoStaffDataException(NoStaffDataException e) {
 		return new ResponseEntity<>(getErrorResponse(e), HttpStatus.NOT_FOUND);
 	}
+	
+	@ExceptionHandler(value = NoFileFoundException.class)
+	public ResponseEntity<ErrorResponse> handleNoFileFoundException(NoFileFoundException e) {
+		return new ResponseEntity<>(getErrorResponse(e), HttpStatus.NOT_FOUND);
+	}
 
 	public ErrorResponse getErrorResponse(RuntimeException e) {
 		ErrorResponse error = new ErrorResponse();

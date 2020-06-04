@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 import com.ratna.spring.mongodb.exceptions.DataLoadDataException;
+import com.ratna.spring.mongodb.exceptions.NoFileFoundException;
 import com.ratna.spring.mongodb.model.AccountCSVFile;
 import com.ratna.spring.mongodb.model.AccountDetails;
 import com.ratna.spring.mongodb.model.AccountHolder;
@@ -31,7 +32,7 @@ public class CsvProcessingService implements CsvProcessingServiceInterface {
 	@Autowired
 	MongoTemplate template;
 
-	public String loadDataIntoDatabase() throws DataLoadDataException{
+	public String loadDataIntoDatabase() throws DataLoadDataException {
 		String msg = "Loaded Data Successfully...";
 
 		Resource resource = resourceLoader.getResource("classpath:accountdetails.csv");
@@ -89,6 +90,54 @@ public class CsvProcessingService implements CsvProcessingServiceInterface {
 		template.insertAll(list);
 
 		return msg;
+	}
+
+	@Override
+	public String saveUploadedFile(Reader reader) throws NoFileFoundException {
+		String msg = "Uploaded to database";
+		CsvToBean<AccountCSVFile> csvToBean = new CsvToBeanBuilder<AccountCSVFile>(reader)
+				.withType(AccountCSVFile.class).withIgnoreLeadingWhiteSpace(true).build();
+
+		List<AccountCSVFile> parse = csvToBean.parse();
+
+		List<AccountDetails> list = new ArrayList<>();
+
+		parse.forEach(obj -> {
+			int nextInt = new Random().nextInt(10000);
+			// Account Details
+			AccountDetails accountDetails = new AccountDetails();
+			accountDetails.setId(nextInt + 7);
+			accountDetails.setAccountNumber(obj.getAccountNumber());
+			accountDetails.setAccountType(obj.getAccountType());
+			accountDetails.setIfsc(obj.getIfsc());
+			accountDetails.setTransferLimit(obj.getTransferLimit());
+
+			// Account Holder Info
+			AccountHolder accountHolder = new AccountHolder();
+			accountHolder.setId(new Random().nextInt(10000) + 2);
+			accountHolder.setAddress(obj.getAddress());
+			accountHolder.setDob(obj.getDob());
+			accountHolder.setFirstName(obj.getFirstName());
+			accountHolder.setLastName(obj.getLastName());
+			accountHolder.setMobile(obj.getMobile());
+			accountDetails.setAccountHolder(accountHolder);
+
+			// RegionDetails
+			RegionDetails regionDetails = new RegionDetails();
+			regionDetails.setId(new Random().nextInt(1000) + 4);
+			regionDetails.setArea(obj.getArea());
+			regionDetails.setCountry(obj.getCountry());
+			regionDetails.setPinCode(obj.getPinCode());
+			regionDetails.setState(obj.getState());
+			accountDetails.setRegionDetails(regionDetails);
+			list.add(accountDetails);
+
+		});
+
+		template.insertAll(list);
+
+		return msg;
+
 	}
 
 }

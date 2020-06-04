@@ -21,6 +21,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ratna.spring.mongodb.exceptions.NoInventoryDataException;
 import com.ratna.spring.mongodb.model.Inventory;
 import com.ratna.spring.mongodb.model.Staff;
 import com.ratna.spring.mongodb.service.InventoryService;
@@ -80,6 +81,15 @@ class StoresControllerTest {
 		mockMvc.perform(MockMvcRequestBuilders.get("/getAllStaff").contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
 				.andExpect(jsonPath("$.[0].address").value("hyd")).andExpect(jsonPath("$.[0].fname").value("Ratna"));
+	}
+
+	@Test
+	void testGetAllInventoriesException() throws Exception {
+		when(mockIn.getAllInventories()).thenThrow(NoInventoryDataException.class);
+		mockMvc.perform(
+				get("/getAllInventories").contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isNotFound()).andReturn().getResponse();
+
 	}
 
 }
